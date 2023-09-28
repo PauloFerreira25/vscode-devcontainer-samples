@@ -1,0 +1,26 @@
+{
+    "name": "aws-cli",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    // "remoteUser": "dev-user",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "esbenp.prettier-vscode",
+                "vscjava.vscode-java-pack",
+                "vscjava.vscode-spring-initializr",
+                "ms-ossdata.vscode-postgresql",
+                "ms-azuretools.vscode-docker",
+            ]
+        }
+    },
+    "runArgs": [
+        "--add-host=host.docker.internal:host-gateway"
+    ],
+    "mounts": [
+        "source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind,consistency=cached",
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ]
+}
